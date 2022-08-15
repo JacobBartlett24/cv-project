@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App">
       <Header title = 'CV Project'/>
-      <Main title = 'Main'/>
+      <Main title = 'CV Form'/>
       <Footer title = 'Footer'/>
     </div>
   );

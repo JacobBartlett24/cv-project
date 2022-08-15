@@ -16,6 +16,29 @@ const Title = styled.div`
   display: flex;
   justify-content: center;
 `
+const ContainerStyle = styled.div`
+  display: grid;
+  grid-template-rows: repeat(7,1fr);
+  height: 60vh;
+  width: 50vw;
+  padding: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background: grey;
+`
+
+const MainContainer = () => {
+  return (
+    <ContainerStyle>
+    <input type="text" placeholder="Name" id = 'name' style = {{height: 20}}/>
+    <input type="number" placeholder="Number" id = 'number' style = {{height: 20}}/>
+    <input type="email" placeholder="Email" id = 'email' style = {{height: 20}}/>
+    <input type="text" placeholder="Current Job" id = 'job' style = {{height: 20}}/>
+    <input type="text" placeholder="Previous Workplace" id = 'workplace' style = {{height: 20}}/>
+    <input type="text" placeholder="Desired Salary" id = 'salary' style = {{height: 20}}/>
+    <button type = 'submit' id = 'submit'style = {{height: 30}}>Submit</button> 
+    </ContainerStyle>
+  );
+}
 
 const Main = (props) => {
 
@@ -25,20 +48,11 @@ const Main = (props) => {
     <MainStyle>
     <div>
       <Title><h1>{title}</h1></Title>
-      
-      <form action="">
       <FormStyle>
-        <label htmlFor=""></label>
-        <input type="text" placeholder="Name"/>
-        <input type="text" placeholder="Number"/>
-        <input type="text" placeholder="Email"/>
-        <input type="text" placeholder="Current Job"/>
-        <input type="text" placeholder="Previous Workplace"/>
-        <input type="text" placeholder="Desired Salary"/>
-        
-        <button>Submit</button> 
+        <form action="">
+          <MainContainer />  
+        </form>
       </FormStyle>
-      </form>
       
     </div>
     </MainStyle>
