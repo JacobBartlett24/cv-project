@@ -34,9 +34,25 @@ class AppComponent extends Component{
     super(props)
 
     this.state = {
-      child: {inner: ''},
+      child: {html: ''},
       children: [],
-    } 
+    }
+
+  }
+
+  addWorkExperience = (e) =>{
+    e.preventDefault();
+    this.setState({
+      child: {html: <div>
+                      <input type="text" placeholder="Name" id = 'names' style = {{height: 20}}/>
+                      <input type="text" placeholder="Name" id = 'name2' style = {{height: 20}}/>
+                      <input type="text" placeholder="Name" id = 'name3' style = {{height: 20}}/>
+                    </div>},
+
+      children: this.state.children.concat(this.state.child),
+    });
+    console.log(this.state.children);
+
   }
 
   render(){
@@ -52,7 +68,12 @@ class AppComponent extends Component{
             <input type="number" placeholder="Number" id = 'number' style = {{height: 20}}/>
             <input type="email" placeholder="Email" id = 'email' style = {{height: 20}}/>
             <input type="text" placeholder="Desired Salary" id = 'salary' style = {{height: 20}}/> 
-            <button 
+            <ul>
+              {children.map((child) =>{
+                return <li>{child.html}</li>
+              })}
+            </ul>
+            <button onClick={this.addWorkExperience}
             id = 'workExperience'
             style={{height: 20}}>
               Add Previous Work Experience
@@ -71,5 +92,7 @@ class AppComponent extends Component{
   }
 
 }
+
+  
 
 export default AppComponent;
