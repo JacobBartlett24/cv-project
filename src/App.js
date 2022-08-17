@@ -1,19 +1,23 @@
 import Header from './Header';
-import Main from './Main';
+import AppComponent from './Main';
 import Footer from './Footer';
+import { Component } from 'react';
 
 
-function App() {
+class App extends Component {
 
-  document.body.style.margin = '0';
-
-  return (
-    <div className="App">
-      <Header title = 'CV Project'/>
-      <Main title = 'CV Form'/>
-      <Footer title = 'Footer'/>
-    </div>
-  );
+  
+  render(){
+    return (
+      <div>
+        <div className="App">
+          <Header title = 'CV Project'/>
+          <AppComponent title = 'CV Form' />
+          <Footer title = 'Footer'/>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
