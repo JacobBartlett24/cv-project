@@ -10,7 +10,6 @@ const MainStyle = styled.div`
 const FormStyle = styled.div`
   display: flex;
   flex-direction: column;
-  
 `
 
 const Title = styled.div`
@@ -28,19 +27,17 @@ const ContainerStyle = styled.div`
   `
 
 const ListStyle = styled.div`
-  display: flex;
-  flex-direction: column;
+  width: inherit;
+  background: grey;
   list-style: none;
-  height: 6rem;
-  width: 50vw;  
-  background:grey;
+  display: flex;
+  
 `
 
 const InputStyle = styled.div`
-  background: grey;
-  list-style: none;
-  width:50vw;
-  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `
 
 class AppComponent extends Component{
@@ -57,12 +54,14 @@ class AppComponent extends Component{
   addWorkExperience = (e) =>{
     e.preventDefault();
     this.setState({
-      child: {html: <div>
-        
-                        <input type="text" style = {{lineHeight: 2}}placeholder="Name" id = 'names' style = {{height: 20}}/>
-                        <input type="text" style = {{lineHeight: 2}}placeholder="Name" id = 'name2' style = {{height: 20}}/>
-                        <input type="text" style = {{lineHeight: 2}}placeholder="Name" id = 'name3' style = {{height: 20}}/>
-                    </div>
+      child: {html: 
+        <InputStyle>
+          
+                          <div style = {{marginTop: 1 + 'rem', marginBottom: 2 + 'rem'}}><input type="text" placeholder="Name" id = 'names' style = {{height: 20}}/></div>
+                          <div style = {{marginTop: 1 + 'rem', marginBottom: 2 + 'rem'}}><input type="text" placeholder="Name" id = 'name2' style = {{height: 20}}/></div>
+                          <div style = {{marginTop: 1 + 'rem', marginBottom: 2 + 'rem'}}><input type="text" placeholder="Name" id = 'name3' style = {{height: 20}}/></div>
+        </InputStyle>
+                    
       },
 
       children: this.state.children.concat(this.state.child),
@@ -84,26 +83,24 @@ class AppComponent extends Component{
             <input type="number" placeholder="Number" id = 'number' style = {{height: 20}}/>
             <input type="email" placeholder="Email" id = 'email' style = {{height: 20}}/>
             <input type="text" placeholder="Desired Salary" id = 'salary' style = {{height: 20}}/> 
-            <ListStyle>
-              <ul>
-                {children.map((child) =>{
-                  return <InputStyle>
-                    <li>{child.html}</li>
-                  </InputStyle>
-                })}
-              </ul>
-            </ListStyle>
             <button onClick={this.addWorkExperience}
             id = 'workExperience'
             style={{height: 20}}>
               Add Previous Work Experience
             </button>
-          </ContainerStyle>
-          
-           
-          
-          <button type = 'submit' id = 'submit'style = {{height: 30}}>Submit</button>  
+            
+              <ul >
+                {children.map((child) =>{
+                  return  <ListStyle>
+                            <li>{child.html}</li>
+                          </ListStyle>
+                })}
+              </ul>
+            
+          </ContainerStyle>  
+          <button type = 'submit' id = 'submit'style = {{height: 30}}>Submit</button>    
           </form>
+          
         </FormStyle>
         
       </div>
