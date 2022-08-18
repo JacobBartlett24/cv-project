@@ -1,3 +1,4 @@
+import { toHaveDisplayValue } from "@testing-library/jest-dom/dist/matchers";
 import React, { Component } from "react";
 import styled from "styled-components";
 
@@ -5,6 +6,7 @@ const MainStyle = styled.div`
   height: calc(100vh - 160px);
   display: flex;
   justify-content: center;
+  overflow: scroll;
 `
 
 const FormStyle = styled.div`
@@ -27,11 +29,13 @@ const ContainerStyle = styled.div`
   `
 
 const ListStyle = styled.div`
-  width: inherit;
+  width: 17rem;
   background: grey;
   list-style: none;
   display: flex;
-  
+  li *{
+    width: 15rem;
+  }
 `
 
 const InputStyle = styled.div`
@@ -47,6 +51,10 @@ class AppComponent extends Component{
     this.state = {
       child: {html: ''},
       children: [],
+      name: '',
+      number: '',
+      email: '',
+      salary: '',
     }
 
   }
@@ -57,7 +65,7 @@ class AppComponent extends Component{
       child: {html: 
         <InputStyle>
           
-                          <div style = {{marginTop: 1 + 'rem', marginBottom: 2 + 'rem'}}><input type="text" placeholder="Name" id = 'names' style = {{height: 20}}/></div>
+                          <div style = {{borderWidth: 10 + 'rem',marginTop: 1 + 'rem', marginBottom: 2 + 'rem'}}><input type="text" placeholder="Name" id = 'names' style = {{height: 20}}/></div>
                           <div style = {{marginTop: 1 + 'rem', marginBottom: 2 + 'rem'}}><input type="text" placeholder="Name" id = 'name2' style = {{height: 20}}/></div>
                           <div style = {{marginTop: 1 + 'rem', marginBottom: 2 + 'rem'}}><input type="text" placeholder="Name" id = 'name3' style = {{height: 20}}/></div>
         </InputStyle>
@@ -66,8 +74,44 @@ class AppComponent extends Component{
 
       children: this.state.children.concat(this.state.child),
     });
-    console.log(this.state.children);
+  }
 
+  handleNameChange = (e) => {
+    this.setState({
+      name: e.target.value,
+    })
+  }
+
+  handleNumberChange = (e) => {
+    this.setState({
+      number: e.target.value,
+    })
+  }
+
+  handleEmailChange = (e) => {
+    this.setState({
+      email: e.target.value,
+    })
+  }
+
+  handleSalaryChange = (e) => {
+    this.setState({
+      salary: e.target.value,
+    })
+  }
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    this.setState({
+      name: '',
+      number: '',
+      email: '',
+      salary: '',
+    })
+    console.log(this.state.name);
+    console.log(this.state.number);
+    console.log(this.state.email);
+    console.log(this.state.salary);
   }
 
   render(){
@@ -77,12 +121,40 @@ class AppComponent extends Component{
       <div>
         <Title><h1>{this.props.title}</h1></Title>
         <FormStyle>
-          <form action="">
+          <form action="" onSubmit={this.onSubmit}>
           <ContainerStyle>
-            <input type="text" placeholder="Name" id = 'name' style = {{height: 20}}/>
-            <input type="number" placeholder="Number" id = 'number' style = {{height: 20}}/>
-            <input type="email" placeholder="Email" id = 'email' style = {{height: 20}}/>
-            <input type="text" placeholder="Desired Salary" id = 'salary' style = {{height: 20}}/> 
+            <input 
+            type="text" 
+            value = {this.state.name} 
+            onChange = {this.handleNameChange}
+            placeholder="Name" 
+            id = 'name' 
+            style = {{height: 20}}/>
+
+            <input 
+            type="text" 
+            value={this.state.number}
+            onChange={this.handleNumberChange}
+            placeholder="Number" 
+            id = 'number' 
+            style = {{height: 20}}/>
+
+            <input 
+            type="email" 
+            value={this.state.email}
+            onChange={this.handleEmailChange}
+            placeholder="Email" 
+            id = 'email' 
+            style = {{height: 20}}/>
+
+            <input 
+            type="text" 
+            value={this.state.salary}
+            onChange={this.handleSalaryChange}
+            placeholder="Desired Salary" 
+            id = 'salary' 
+            style = {{height: 20}}/>
+
             <button onClick={this.addWorkExperience}
             id = 'workExperience'
             style={{height: 20}}>
