@@ -20,7 +20,7 @@ const Title = styled.div`
 `
 const ContainerStyle = styled.div`
   display: grid;
-  grid-template-rows: repeat(6,4rem);
+  grid-template-rows: repeat(4,4rem);
   height: 17rem;
   width: 50vw;
   padding: 1rem;
@@ -33,12 +33,18 @@ const ListStyle = styled.div`
   list-style: none;
 `
 
-
-
 const InputStyle = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+`
+
+const UnordedListStyle = styled.div`
+display: flex;
+justify-content: center;
+aligin-items: center;
+margin: 10px; 
+width: 17rem;
 `
 
 class AppComponent extends Component{
@@ -57,13 +63,7 @@ class AppComponent extends Component{
   }
 
   removeWorkExperience(index){
-    var array = [...this.state.children];
-    console.log(array)
-    array.splice(index,1);
     
-    this.setState({
-      children: array,
-    });
   }
 
   addWorkExperience = (e) =>{
@@ -71,9 +71,9 @@ class AppComponent extends Component{
     this.setState({
       child: {html: 
         <InputStyle>
-          <div style = {{borderWidth: 10 + 'rem',marginTop: 1 + 'rem', marginBottom: 2 + 'rem'}}><input type="text" placeholder="Name" id = 'names' style = {{height: 20}}/></div>
-          <div style = {{marginTop: 1 + 'rem', marginBottom: 2 + 'rem'}}><input type="text" placeholder="Name" id = 'name2' style = {{height: 20}}/></div>
-          <div style = {{marginTop: 1 + 'rem', marginBottom: 2 + 'rem'}}><input type="text" placeholder="Name" id = 'name3' style = {{height: 20}}/></div>
+          <div style = {{borderWidth: 10 + 'rem',marginTop: 1 + 'rem', marginBottom: 2 + 'rem'}}><input type="text" placeholder="Place of work" style = {{height: 20}}/></div>
+          <div style = {{marginTop: 1 + 'rem', marginBottom: 2 + 'rem'}}><input type="text" placeholder="Job title" style = {{height: 20}}/></div>
+          <div style = {{marginTop: 1 + 'rem', marginBottom: 2 + 'rem'}}><input type="number" placeholder="Years of experience" style = {{height: 20}}/></div>
         </InputStyle>
                     
       },
@@ -165,22 +165,25 @@ class AppComponent extends Component{
               Add Previous Work Experience
             </button>
             
-            <ul >
+            <UnordedListStyle>
+            <ul>
               {children.map((child, index) =>{
-                return  <ListStyle>
-                          <li>
-                            {child.html}
-                            <button onClick={this.removeWorkExperience(index)}>
-                              Remove Work Experience
-                            </button>
-                          </li>
-                        </ListStyle>
-              })}
+                return(  
+                <ListStyle>
+                  <li>
+                      {child.html}
+                      <button onClick={this.removeWorkExperience(index)}>
+                        Remove Work Experience
+                      </button>
+                    </li>
+                </ListStyle>
+              )})}
             </ul>
+            </UnordedListStyle>
             
           </ContainerStyle>  
-          <button type = 'submit' id = 'submit'style = {{height: 30}}>Submit</button>    
-          </form>
+          {//<button type = 'submit' id = 'submit'style = {{height: 30}}>Submit</button>    
+  }</form>
           
         </FormStyle>
         
