@@ -29,14 +29,11 @@ const ContainerStyle = styled.div`
   `
 
 const ListStyle = styled.div`
-  width: 17rem;
   background: grey;
   list-style: none;
-  display: flex;
-  li *{
-    width: 15rem;
-  }
 `
+
+
 
 const InputStyle = styled.div`
   display: flex;
@@ -59,15 +56,24 @@ class AppComponent extends Component{
 
   }
 
+  removeWorkExperience(index){
+    var array = [...this.state.children];
+    console.log(array)
+    array.splice(index,1);
+    
+    this.setState({
+      children: array,
+    });
+  }
+
   addWorkExperience = (e) =>{
     e.preventDefault();
     this.setState({
       child: {html: 
         <InputStyle>
-          
-                          <div style = {{borderWidth: 10 + 'rem',marginTop: 1 + 'rem', marginBottom: 2 + 'rem'}}><input type="text" placeholder="Name" id = 'names' style = {{height: 20}}/></div>
-                          <div style = {{marginTop: 1 + 'rem', marginBottom: 2 + 'rem'}}><input type="text" placeholder="Name" id = 'name2' style = {{height: 20}}/></div>
-                          <div style = {{marginTop: 1 + 'rem', marginBottom: 2 + 'rem'}}><input type="text" placeholder="Name" id = 'name3' style = {{height: 20}}/></div>
+          <div style = {{borderWidth: 10 + 'rem',marginTop: 1 + 'rem', marginBottom: 2 + 'rem'}}><input type="text" placeholder="Name" id = 'names' style = {{height: 20}}/></div>
+          <div style = {{marginTop: 1 + 'rem', marginBottom: 2 + 'rem'}}><input type="text" placeholder="Name" id = 'name2' style = {{height: 20}}/></div>
+          <div style = {{marginTop: 1 + 'rem', marginBottom: 2 + 'rem'}}><input type="text" placeholder="Name" id = 'name3' style = {{height: 20}}/></div>
         </InputStyle>
                     
       },
@@ -75,6 +81,8 @@ class AppComponent extends Component{
       children: this.state.children.concat(this.state.child),
     });
   }
+
+  
 
   handleNameChange = (e) => {
     this.setState({
@@ -107,11 +115,7 @@ class AppComponent extends Component{
       number: '',
       email: '',
       salary: '',
-    })
-    console.log(this.state.name);
-    console.log(this.state.number);
-    console.log(this.state.email);
-    console.log(this.state.salary);
+    });
   }
 
   render(){
@@ -161,13 +165,18 @@ class AppComponent extends Component{
               Add Previous Work Experience
             </button>
             
-              <ul >
-                {children.map((child) =>{
-                  return  <ListStyle>
-                            <li>{child.html}</li>
-                          </ListStyle>
-                })}
-              </ul>
+            <ul >
+              {children.map((child, index) =>{
+                return  <ListStyle>
+                          <li>
+                            {child.html}
+                            <button onClick={this.removeWorkExperience(index)}>
+                              Remove Work Experience
+                            </button>
+                          </li>
+                        </ListStyle>
+              })}
+            </ul>
             
           </ContainerStyle>  
           <button type = 'submit' id = 'submit'style = {{height: 30}}>Submit</button>    
